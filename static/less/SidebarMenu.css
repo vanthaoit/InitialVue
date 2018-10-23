@@ -1,0 +1,8 @@
+.sidebar-menu .treeview-menu .sidebar-item {
+  padding: 5px 5px 5px 15px;
+  display: block;
+  font-size: 14px;
+}
+.sidebar-menu .treeview-menu .sidebar-item .fa {
+  width: 20px;
+}
