@@ -52,7 +52,7 @@ export const timeline = [{
   buttons: [{
     type: 'primary',
     message: 'Read more',
-    href: 'https://github.com/misterGF/CoPilot',
+    href: 'https://github.com/vanthaoit/InitialVue',
     target: '_blank'
   }]
 },

@@ -5,8 +5,8 @@
     <div class="row">
       <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-check"></i> CoPilot is open source!</h4>
-        Click on icon to check it out on github. <a href="https://github.com/misterGF/CoPilot" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+        <h4><i class="icon fa fa-check"></i> InitialVue is open source!</h4>
+        Click on icon to check it out on github. <a href="https://github.com/vanthaoit/InitialVue" target="_blank"><i class="fa fa-github fa-2x"></i></a>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
@@ -188,7 +188,7 @@ export default {
     }
   },
   computed: {
-    coPilotNumbers () {
+    initialVueNumbers () {
       return this.generateRandomNumbers(12, 1000000, 10000)
     },
     personalNumbers () {
@@ -206,12 +206,12 @@ export default {
         data: {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           datasets: [{
-            label: 'CoPilot',
+            label: 'InitialVue',
             fill: false,
             borderColor: '#284184',
             pointBackgroundColor: '#284184',
             backgroundColor: 'rgba(0, 0, 0, 0)',
-            data: this.coPilotNumbers
+            data: this.initialVueNumbers
           }, {
             label: 'Personal Site',
             borderColor: '#4BC0C0',
