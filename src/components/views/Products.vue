@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <section class="content">
     <div class="row center-block">
@@ -210,6 +211,7 @@ export default {
   }
 }
 </script>
+
 
 <style>
 

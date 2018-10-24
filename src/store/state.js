@@ -1,7 +1,7 @@
 export default {
   callingAPI: false,
   searching: '',
-  serverURI: 'http://10.110.1.136:9000',
+  serverURI: 'http://10.110.1.136:8000',
   user: null,
   token: null,
   userInfo: {

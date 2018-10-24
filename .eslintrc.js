@@ -1,8 +1,5 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
+
   parserOptions: {
     sourceType: 'module'
   },
@@ -22,6 +19,7 @@ module.exports = {
     // disable space before func paren
     'space-before-function-paren': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-multi-spaces': 1
   }
-}
+};
