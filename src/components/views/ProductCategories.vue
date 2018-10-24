@@ -1,13 +1,10 @@
-
 <template>
   <section class="content">
-
     <div class="row center-block">
-
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">List products with full features</h3>
+            <h3 class="box-title">List Product Categories With Full Features</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -35,7 +32,7 @@
                     <tbody>
                       <tr class="even" role="row">
                         <td class="sorting_1">Blink</td>
-                        <td>Iridium  54.0</td>
+                        <td>Iridium 54.0</td>
                         <td>GNU/Linux</td>
                         <td>54</td>
                         <td>A</td>
@@ -133,42 +130,38 @@
 </template>
 
 <script>
-import $ from 'jquery'
-// Require needed datatables modules
-require('datatables.net')
-require('datatables.net-bs')
+  import $ from "jquery";
+  // Require needed datatables modules
+  require("datatables.net");
+  require("datatables.net-bs");
 
-export default {
-  name: 'Products',
-  mounted() {
-    this.$nextTick(() => {
-      $('#example1').DataTable()
-    })
-  }
-}
+  export default {
+    name: "ProductCategories",
+    mounted() {
+      this.$nextTick(() => {
+        $("#example1").DataTable();
+      });
+    }
+  };
 </script>
 
-
 <style>
+  @import url("/static/js/plugins/datatables/dataTables.bootstrap.css");
+  table.dataTable thead .sorting:after,
+  table.dataTable thead .sorting_asc:after,
+  table.dataTable thead .sorting_desc:after {
+    font-family: "FontAwesome";
+  }
 
+  table.dataTable thead .sorting:after {
+    content: "\f0dc";
+  }
 
-@import url('/static/js/plugins/datatables/dataTables.bootstrap.css');
+  table.dataTable thead .sorting_asc:after {
+    content: "\f0dd";
+  }
 
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_desc:after {
-  font-family: 'FontAwesome';
-}
-
-table.dataTable thead .sorting:after {
-  content: '\f0dc';
-}
-
-table.dataTable thead .sorting_asc:after {
-  content: '\f0dd';
-}
-
-table.dataTable thead .sorting_desc:after {
-  content: '\f0de';
-}
+  table.dataTable thead .sorting_desc:after {
+    content: "\f0de";
+  }
 </style>

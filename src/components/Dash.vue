@@ -151,7 +151,7 @@
     <!-- Main Footer -->
     <footer class="main-footer">
       <strong>Copyright &copy; {{year}}
-        <a href="javascript:;">InitialVue</a>.</strong> All rights reserved.
+        <a href="javascript:;">Thao Tran Van</a>.</strong> All rights reserved.
     </footer>
   </div>
   <!-- ./wrapper -->

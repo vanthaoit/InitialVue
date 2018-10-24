@@ -11,6 +11,7 @@ import AccessView from './components/views/Access.vue'
 import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
 import ProductsView from './components/views/Products.vue'
+import ProductCategoriesView from './components/views/ProductCategories.vue'
 
 // Routes
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
         component: ProductsView,
         name: 'Products',
         meta: {description: 'Products management'}
+      }, {
+        path: 'productCategories',
+        component: ProductCategoriesView,
+        name: 'ProductCategories',
+        meta: {description: 'Product Categories management'}
       }, {
         path: 'tasks',
         component: TasksView,

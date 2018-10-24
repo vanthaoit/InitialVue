@@ -26,7 +26,7 @@
           </router-link>
         </li>
         <li>
-          <router-link tag="li" class="pageLink sidebar-item" to="/tables">
+          <router-link tag="li" class="pageLink sidebar-item" to="/productCategories">
           <a>
             <i class="fa fa-table"></i> Product Categories
           </a>
