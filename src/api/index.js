@@ -1,19 +1,14 @@
-import axios from 'axios'
-import config from '../config'
+import axios from "axios";
+import { API } from "../config/api.constants";
 
-export default {
-  request (method, uri, data = null) {
-    if (!method) {
-      console.error('API function call requires method argument')
-      return
-    }
+export function HttpGet(uri) {
+  let url = API.SERVER_URI + "/" + uri;
 
-    if (!uri) {
-      console.error('API function call requires uri argument')
-      return
-    }
-
-    var url = config.serverURI + uri
-    return axios({ method, url, data })
-  }
+  return axios.get(url);
+  // .then(response => {
+  //   result = response;
+  // })
+  // .catch(e => {
+  //   result = this.errors.push(e);
+  // });
 }

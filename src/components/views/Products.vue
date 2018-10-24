@@ -35,80 +35,18 @@
                     <tbody>
                       <tr class="even" role="row">
                         <td class="sorting_1">Blink</td>
-                        <td>Iridium  54.0</td>
+                        <td>Iridium 54.0</td>
                         <td>GNU/Linux</td>
                         <td>54</td>
                         <td>A</td>
                       </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 1.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 1.5</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 2.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 3.0</td>
-                        <td>Win 2k+ / OSX.3+</td>
-                        <td>1.9</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Camino 1.0</td>
-                        <td>OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Camino 1.5</td>
-                        <td>OSX.3+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Netscape 7.2</td>
-                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Netscape Browser 8</td>
-                        <td>Win 98SE+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Netscape Navigator 9</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Mozilla 1.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1</td>
-                        <td>A</td>
+
+                      <tr v-for="item in productResult" :key="item.id" class="odd" role="row">
+                        <td class="sorting_1">{{item.Name}}</td>
+                        <td>{{item.Description}}</td>
+                        <td>{{item.Price}}</td>
+                        <td>{{item.Tags}}</td>
+                        <td>{{item.OriginalPrice}}</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -133,42 +71,72 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
+import { HttpGet } from "../../api/index.js";
+import { API } from "../../config/api.constants";
+import {
+  HTTPS_CONSTANTS,
+  GENERAL_CONSTANTS
+} from "../../config/http.constants.js";
+
 // Require needed datatables modules
-require('datatables.net')
-require('datatables.net-bs')
+require("datatables.net");
+require("datatables.net-bs");
 
 export default {
-  name: 'Products',
+  name: "Products",
+
+  data() {
+    return {
+      productResult: [],
+      error: null
+    };
+  },
+
+  methods: {
+    callProducts() {
+      let uri = GENERAL_CONSTANTS.PRODUCT + "/" + GENERAL_CONSTANTS.GET_ALL;
+
+      HttpGet(uri)
+        .then(response => {
+          if (response.status !== 200) {
+            this.error = response.statusText;
+            return;
+          }
+          this.productResult = response.data;
+        })
+        .catch(e => {
+          this.error = e.response.statusText;
+        });
+    }
+  },
   mounted() {
     this.$nextTick(() => {
-      $('#example1').DataTable()
-    })
+      $("#example1").DataTable();
+    });
+    this.callProducts();
   }
-}
+};
 </script>
 
 
 <style>
-
-
-@import url('/static/js/plugins/datatables/dataTables.bootstrap.css');
-
+@import url("/static/js/plugins/datatables/dataTables.bootstrap.css");
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting_asc:after,
 table.dataTable thead .sorting_desc:after {
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
 }
 
 table.dataTable thead .sorting:after {
-  content: '\f0dc';
+  content: "\f0dc";
 }
 
 table.dataTable thead .sorting_asc:after {
-  content: '\f0dd';
+  content: "\f0dd";
 }
 
 table.dataTable thead .sorting_desc:after {
-  content: '\f0de';
+  content: "\f0de";
 }
 </style>

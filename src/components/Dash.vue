@@ -17,11 +17,11 @@
             <li class="dropdown messages-menu">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">{{ userInfo.messages | count }}</span>
+                <span class="label label-success">9</span>
               </a>
               <ul class="dropdown-menu">
-                <li class="header">You have {{ userInfo.messages | count }} message(s)</li>
-                <li v-if="userInfo.messages.length > 0">
+                <li class="header">You have 9 message(s)</li>
+                <li v-if="9 > 0">
                   <!-- inner menu: contains the messages -->
                   <ul class="menu">
                     <li>
@@ -41,7 +41,7 @@
                   </ul>
                   <!-- /.menu -->
                 </li>
-                <li class="footer" v-if="userInfo.messages.length > 0">
+                <li class="footer" v-if="9 > 0">
                   <a href="javascript:;">See All Messages</a>
                 </li>
               </ul>
@@ -52,11 +52,11 @@
             <li class="dropdown notifications-menu">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">{{ userInfo.notifications | count }}</span>
+                <span class="label label-warning">9</span>
               </a>
               <ul class="dropdown-menu">
-                <li class="header">You have {{ userInfo.notifications | count }} notification(s)</li>
-                <li v-if="userInfo.notifications.length > 0">
+                <li class="header">You have 9 notification(s)</li>
+                <li v-if="9 > 0">
                   <!-- Inner Menu: contains the notifications -->
                   <ul class="menu">
                     <li>
@@ -68,7 +68,7 @@
                     <!-- end notification -->
                   </ul>
                 </li>
-                <li class="footer" v-if="userInfo.notifications.length > 0">
+                <li class="footer" v-if="9 > 0">
                   <a href="javascript:;">View all</a>
                 </li>
               </ul>
@@ -78,11 +78,11 @@
             <li class="dropdown tasks-menu">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-flag-o"></i>
-                <span class="label label-danger">{{ userInfo.tasks | count }} </span>
+                <span class="label label-danger">0 </span>
               </a>
               <ul class="dropdown-menu">
-                <li class="header">You have {{ userInfo.tasks | count }} task(s)</li>
-                <li v-if="userInfo.tasks.length > 0">
+                <li class="header">You have 0 task(s)</li>
+                <li v-if="9 > 0">
                   <!-- Inner menu: contains the tasks -->
                   <ul class="menu">
                     <li>
@@ -105,7 +105,7 @@
                     <!-- end task item -->
                   </ul>
                 </li>
-                <li class="footer" v-if="userInfo.tasks.length > 0">
+                <li class="footer" v-if="9 > 0">
                   <a href="javascript:;">View all tasks</a>
                 </li>
               </ul>
@@ -181,9 +181,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'userInfo'
-    ]),
+
     demo () {
       return {
         displayName: faker.name.findName(),

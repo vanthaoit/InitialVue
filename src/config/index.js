@@ -1,5 +1,5 @@
 export default {
-  serverURI: '',
+  serverURI: "",
   fixedLayout: false,
   hideLogoOnMobile: false
 }

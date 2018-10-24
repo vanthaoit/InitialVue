@@ -1,10 +1,13 @@
+
 <template>
   <section class="content">
+
     <div class="row center-block">
+
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">List Product Categories With Full Features</h3>
+            <h3 class="box-title">List product categories with full features</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -30,82 +33,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Blink</td>
-                        <td>Iridium 54.0</td>
-                        <td>GNU/Linux</td>
-                        <td>54</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 1.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 1.5</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 2.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Firefox 3.0</td>
-                        <td>Win 2k+ / OSX.3+</td>
-                        <td>1.9</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Camino 1.0</td>
-                        <td>OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Camino 1.5</td>
-                        <td>OSX.3+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Netscape 7.2</td>
-                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Netscape Browser 8</td>
-                        <td>Win 98SE+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Netscape Navigator 9</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Gecko</td>
-                        <td>Mozilla 1.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1</td>
-                        <td>A</td>
+
+                      <tr v-for="item in productCategoryResult" :key="item.id" class="odd" role="row">
+                        <td class="sorting_1">{{item.Name}}</td>
+                        <td>{{item.Description}}</td>
+                        <td>{{item.Price}}</td>
+                        <td>{{item.DateCreated | formatDate}}</td>
+                        <td>{{item.DateModified | formatDate}}</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -130,38 +64,73 @@
 </template>
 
 <script>
-  import $ from "jquery";
-  // Require needed datatables modules
-  require("datatables.net");
-  require("datatables.net-bs");
+import $ from "jquery";
+import { HttpGet } from "../../api/index.js";
+import { API } from "../../config/api.constants";
+import {
+  HTTPS_CONSTANTS,
+  GENERAL_CONSTANTS
+} from "../../config/http.constants.js";
 
-  export default {
-    name: "ProductCategories",
-    mounted() {
-      this.$nextTick(() => {
-        $("#example1").DataTable();
-      });
+// Require needed datatables modules
+require("datatables.net");
+require("datatables.net-bs");
+
+export default {
+  name: "ProductCategories",
+
+  data() {
+    return {
+      productCategoryResult: [],
+      error: null
+    };
+  },
+
+  methods: {
+    callProductCategories() {
+      let uri =
+        GENERAL_CONSTANTS.PRODUCT_CATEGORY + "/" + GENERAL_CONSTANTS.GET_ALL;
+      debugger;
+      HttpGet(uri)
+        .then(response => {
+          if (response.status !== 200) {
+            this.error = response.statusText;
+            return;
+          }
+          this.productCategoryResult = response.data;
+        })
+        .catch(e => {
+          this.error = e.response.statusText;
+        });
     }
-  };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      $("#example1").DataTable();
+    });
+    this.callProductCategories();
+  }
+};
 </script>
 
+
 <style>
-  @import url("/static/js/plugins/datatables/dataTables.bootstrap.css");
-  table.dataTable thead .sorting:after,
-  table.dataTable thead .sorting_asc:after,
-  table.dataTable thead .sorting_desc:after {
-    font-family: "FontAwesome";
-  }
+@import url("/static/js/plugins/datatables/dataTables.bootstrap.css");
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+  font-family: "FontAwesome";
+}
 
-  table.dataTable thead .sorting:after {
-    content: "\f0dc";
-  }
+table.dataTable thead .sorting:after {
+  content: "\f0dc";
+}
 
-  table.dataTable thead .sorting_asc:after {
-    content: "\f0dd";
-  }
+table.dataTable thead .sorting_asc:after {
+  content: "\f0dd";
+}
 
-  table.dataTable thead .sorting_desc:after {
-    content: "\f0de";
-  }
+table.dataTable thead .sorting_desc:after {
+  content: "\f0de";
+}
 </style>

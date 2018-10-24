@@ -14,6 +14,7 @@ import { domain, count, prettyDate, pluralize } from './filters'
 
 // Import Views - Top level
 import AppView from './components/App.vue'
+import moment from 'moment'
 
 // Import Install and register helper items
 Vue.filter('count', count)
@@ -22,6 +23,11 @@ Vue.filter('prettyDate', prettyDate)
 Vue.filter('pluralize', pluralize)
 
 Vue.use(VueRouter)
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('MM/DD/YYYY hh:mm')
+  }
+})
 
 // Routing logic
 var router = new VueRouter({
