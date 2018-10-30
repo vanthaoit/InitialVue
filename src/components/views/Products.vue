@@ -20,7 +20,7 @@
                 </div>
               </div>
 
-              <div class="row">
+              <div v-if="productResult[0]" class="row">
                 <div class="col-sm-12 table-responsive">
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
@@ -59,7 +59,7 @@
                       </tr>
                     </tfoot>
                   </table>
-                  <v-pagination :total="productResult.length">gghjgj</v-pagination>
+                  
                 </div>
               </div>
             </div>
@@ -92,8 +92,7 @@ export default {
       productResult: [],
       error: null
     };
-  } 
-  ,
+  },
   methods: {
     callProducts() {
       let uri = GENERAL_CONSTANTS.PRODUCT + "/" + GENERAL_CONSTANTS.GET_ALL;
@@ -112,10 +111,12 @@ export default {
     }
   },
   mounted() {
+    this.callProducts();
+  },
+  updated() {
     this.$nextTick(() => {
       $("#example1").DataTable();
     });
-    this.callProducts();
   }
 };
 </script>
@@ -140,7 +141,7 @@ table.dataTable thead .sorting_asc:after {
 table.dataTable thead .sorting_desc:after {
   content: "\f0de";
 }
-.max-character-length{
+.max-character-length {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

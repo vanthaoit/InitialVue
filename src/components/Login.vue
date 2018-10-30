@@ -4,17 +4,18 @@
 
     <div class="text-center col-sm-12">
       <!-- login form -->
-      <form @submit.prevent="checkCreds">
+      <form @submit.prevent="checkParameters">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-          <input class="form-control" name="username" placeholder="Username" type="text" v-model="username">
+          <input class="form-control" required name="username" placeholder="Username" type="text" v-model="username">
         </div>
 
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-          <input class="form-control" name="password" placeholder="Password" type="password" v-model="password">
+          <input class="form-control" required name="password" placeholder="Password" type="password" v-model="password">
         </div>
-        <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">Submit</button>
+        <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">Log-in</button>
+        
       </form>
 
       <!-- errors -->
@@ -24,80 +25,84 @@
 </template>
 
 <script>
-import api from '../api'
+import api from "../api";
 
 export default {
-  name: 'Login',
+  name: "Login",
   data(router) {
     return {
-      section: 'Login',
-      loading: '',
-      username: '',
-      password: '',
-      response: ''
-    }
+      section: "Login",
+      loading: "",
+      username: "",
+      password: "",
+      response: ""
+    };
   },
   methods: {
+    checkParameters(){
+      this.$router.push('/administrator')
+    },
     checkCreds() {
-      const { username, password } = this
+      const { username, password } = this;
 
-      this.toggleLoading()
-      this.resetResponse()
-      this.$store.commit('TOGGLE_LOADING')
+      this.toggleLoading();
+      this.resetResponse();
+      this.$store.commit("TOGGLE_LOADING");
 
       /* Making API call to authenticate a user */
       api
-        .request('post', '/login', { username, password })
+        .request("post", "/login", { username, password })
         .then(response => {
-          this.toggleLoading()
+          this.toggleLoading();
 
-          var data = response.data
+          var data = response.data;
           /* Checking if error object was returned from the server */
           if (data.error) {
-            var errorName = data.error.name
+            var errorName = data.error.name;
             if (errorName) {
               this.response =
-                errorName === 'InvalidCredentialsError'
-                  ? 'Username/Password incorrect. Please try again.'
-                  : errorName
+                errorName === "InvalidCredentialsError"
+                  ? "Username/Password incorrect. Please try again."
+                  : errorName;
             } else {
-              this.response = data.error
+              this.response = data.error;
             }
 
-            return
+            return;
           }
 
           /* Setting user in the state and caching record to the localStorage */
           if (data.user) {
-            var token = 'Bearer ' + data.token
+            var token = "Bearer " + data.token;
 
-            this.$store.commit('SET_USER', data.user)
-            this.$store.commit('SET_TOKEN', token)
+            this.$store.commit("SET_USER", data.user);
+            this.$store.commit("SET_TOKEN", token);
 
             if (window.localStorage) {
-              window.localStorage.setItem('user', JSON.stringify(data.user))
-              window.localStorage.setItem('token', token)
+              window.localStorage.setItem("user", JSON.stringify(data.user));
+              window.localStorage.setItem("token", token);
             }
 
-            this.$router.push(data.redirect ? data.redirect : '/')
+            this.$router.push(data.redirect ? data.redirect : "/");
           }
         })
         .catch(error => {
-          this.$store.commit('TOGGLE_LOADING')
-          console.log(error)
+          this.$store.commit("TOGGLE_LOADING");
+          console.log(error);
 
-          this.response = 'Server appears to be offline'
-          this.toggleLoading()
-        })
+          this.response = "Server appears to be offline";
+          this.toggleLoading();
+        });
+        this.$router.push('/administrator')
     },
     toggleLoading() {
-      this.loading = this.loading === '' ? 'loading' : ''
+      this.loading = this.loading === "" ? "loading" : "";
     },
     resetResponse() {
-      this.response = ''
+      this.response = "";
     }
   }
-}
+};
 </script>
 
 <style>

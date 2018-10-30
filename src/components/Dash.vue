@@ -115,9 +115,9 @@
             <li class="dropdown user user-menu">
               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img v-bind:src="demo.avatar" class="user-image" alt="User Image">
+                <!-- <img v-bind:src="demo.avatar" class="user-image" alt="User Image"> -->
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">{{ demo.displayName }}</span>
+                <span class="hidden-xs">Thao Johan</span>
               </a>
             </li>
           </ul>
@@ -138,7 +138,7 @@
         <ol class="breadcrumb">
           <li>
             <a href="javascript:;">
-              <i class="fa fa-home"></i>Home</a>
+              <i class="fa fa-home"></i>Home</a>  
           </li>
           <li class="active">{{$route.name.toUpperCase()}}</li>
         </ol>

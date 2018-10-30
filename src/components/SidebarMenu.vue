@@ -18,7 +18,7 @@
       </a>
       <ul class="treeview-menu">
         <li>
-          <router-link tag="li" class="pageLink sidebar-item" to="/products">
+          <router-link tag="li" class="pageLink sidebar-item" :to="'/administrator/products'">
           <a>
             <i class="fa fa-table"></i> Products
 
@@ -26,20 +26,13 @@
           </router-link>
         </li>
         <li>
-          <router-link tag="li" class="pageLink sidebar-item" to="/productCategories">
+          <router-link tag="li" class="pageLink sidebar-item" :to="'/administrator/productCategories'">
           <a>
             <i class="fa fa-table"></i> Product Categories
           </a>
           </router-link>
         </li>
 
-         <li>
-          <router-link tag="li" class="pageLink sidebar-item" to="/tables">
-          <a>
-            <i class="fa fa-table"></i> Tables
-          </a>
-          </router-link>
-        </li>
       </ul>
     </li>
 

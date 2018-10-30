@@ -16,11 +16,11 @@ import ProductCategoriesView from './components/views/ProductCategories.vue'
 // Routes
 const routes = [
   {
-    path: '/login',
+    path: '/',
     component: LoginView
   },
   {
-    path: '/',
+    path: '/administrator',
     component: DashView,
     children: [
       {

@@ -5,7 +5,7 @@
     <div class="row center-block">
 
       <div class="col-md-12">
-        <div v-if="productCategoryResult[0]" class="box">
+        <div class="box">
           <div class="box-header">
             <h3 class="box-title">List product categories with full features</h3>
           </div>
@@ -14,7 +14,7 @@
             <div class="dataTables_wrapper form-inline dt-bootstrap" id="example1_wrapper">
           
 
-              <div class="row">
+              <div v-if="productCategoryResult[0]" class="row">
                 <div class="col-sm-12 table-responsive">
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
@@ -107,10 +107,12 @@ export default {
     }
   },
   mounted() {
+    this.callProductCategories();
+  },
+  updated() {
     this.$nextTick(() => {
       $("#example1").DataTable();
     });
-    this.callProductCategories();
   }
 };
 </script>
