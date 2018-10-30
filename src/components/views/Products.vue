@@ -25,37 +25,37 @@
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
                       <tr role="row">
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Rendering engine</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Browser</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Platform(s)</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Engine version</th>
-                        <th aria-label="CSS grade: activate to sort column ascending" style="width: 101px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">CSS grade</th>
+                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Name</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Description</th>
+                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Original Price</th>
+                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Price</th>
+                        <th aria-label="CSS grade: activate to sort column ascending" style="width: 101px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Date Modified</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even" role="row">
-                        <td class="sorting_1">Blink</td>
-                        <td>Iridium 54.0</td>
-                        <td>GNU/Linux</td>
-                        <td>54</td>
-                        <td>A</td>
+                      <tr class="even" role="row" hidden>
+                        <td class="sorting_1">Iphone</td>
+                        <td>be introduced in 1999</td>
+                        <td>10000</td>
+                        <td>1000</td>
+                        <td>2017-03-05T00:00:00</td>
                       </tr>
 
                       <tr v-for="item in productResult" :key="item.id" class="odd" role="row">
                         <td class="sorting_1">{{item.Name}}</td>
                         <td>{{item.Description}}</td>
-                        <td>{{item.Price}}</td>
-                        <td>{{item.Tags}}</td>
                         <td>{{item.OriginalPrice}}</td>
+                        <td>{{item.Price}}</td>
+                        <td>{{item.DateModified}}</td>
                       </tr>
                     </tbody>
                     <tfoot>
                       <tr>
-                        <th colspan="1" rowspan="1">Rendering engine</th>
-                        <th colspan="1" rowspan="1">Browser</th>
-                        <th colspan="1" rowspan="1">Platform(s)</th>
-                        <th colspan="1" rowspan="1">Engine version</th>
-                        <th colspan="1" rowspan="1">CSS grade</th>
+                        <th colspan="1" rowspan="1">Name</th>
+                        <th colspan="1" rowspan="1">Description</th>
+                        <th colspan="1" rowspan="1">Original Price</th>
+                        <th colspan="1" rowspan="1">Price</th>
+                        <th colspan="1" rowspan="1">Date Modified</th>
                       </tr>
                     </tfoot>
                   </table>
