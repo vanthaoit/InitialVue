@@ -9,6 +9,7 @@ import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
 
+
 // Import Helpers for filters
 import { domain, count, prettyDate, pluralize } from './filters'
 
@@ -28,6 +29,7 @@ Vue.filter('formatDate', function(value) {
     return moment(String(value)).format('MM/DD/YYYY hh:mm')
   }
 })
+
 
 // Routing logic
 var router = new VueRouter({

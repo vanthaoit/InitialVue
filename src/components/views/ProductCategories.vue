@@ -5,7 +5,7 @@
     <div class="row center-block">
 
       <div class="col-md-12">
-        <div class="box">
+        <div v-if="productCategoryResult[0]" class="box">
           <div class="box-header">
             <h3 class="box-title">List product categories with full features</h3>
           </div>
@@ -34,14 +34,15 @@
                         <td>1000</td>
                         <td>2017-03-05T00:00:00</td>
                       </tr>
-
-                      <tr v-for="item in productCategoryResult" :key="item.id" class="odd" role="row">
+                 
+                      <tr v-for="item in productCategoryResult" :key="item.id" class="even" role="row">
                         <td class="sorting_1">{{item.Name}}</td>
                         <td>{{item.Description}}</td>
                         <td>{{item.DateCreated | formatDate}}</td>
                         <td>{{item.DateModified | formatDate}}</td>
                         <td>{{item.Status}}</td>
                       </tr>
+                      
                     </tbody>
                     <tfoot>
                       <tr>

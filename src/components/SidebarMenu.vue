@@ -32,6 +32,14 @@
           </a>
           </router-link>
         </li>
+
+         <li>
+          <router-link tag="li" class="pageLink sidebar-item" to="/tables">
+          <a>
+            <i class="fa fa-table"></i> Tables
+          </a>
+          </router-link>
+        </li>
       </ul>
     </li>
 

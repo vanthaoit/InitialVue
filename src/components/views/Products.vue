@@ -26,8 +26,8 @@
                     <thead>
                       <tr role="row">
                         <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Name</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Description</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Original Price</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Content</th>
+                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Description</th>
                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Price</th>
                         <th aria-label="CSS grade: activate to sort column ascending" style="width: 101px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Date Modified</th>
                       </tr>
@@ -43,22 +43,23 @@
 
                       <tr v-for="item in productResult" :key="item.id" class="odd" role="row">
                         <td class="sorting_1">{{item.Name}}</td>
-                        <td>{{item.Description}}</td>
-                        <td>{{item.OriginalPrice}}</td>
+                        <td class="max-character-length">{{item.Content}}</td>
+                        <td class="max-character-length">{{item.Description}}</td>
                         <td>{{item.Price}}</td>
-                        <td>{{item.DateModified}}</td>
+                        <td>{{item.DateModified | formatDate}}</td>
                       </tr>
                     </tbody>
                     <tfoot>
                       <tr>
                         <th colspan="1" rowspan="1">Name</th>
+                        <th colspan="1" rowspan="1">Content</th>
                         <th colspan="1" rowspan="1">Description</th>
-                        <th colspan="1" rowspan="1">Original Price</th>
                         <th colspan="1" rowspan="1">Price</th>
                         <th colspan="1" rowspan="1">Date Modified</th>
                       </tr>
                     </tfoot>
                   </table>
+                  <v-pagination :total="productResult.length">gghjgj</v-pagination>
                 </div>
               </div>
             </div>
@@ -91,8 +92,8 @@ export default {
       productResult: [],
       error: null
     };
-  },
-
+  } 
+  ,
   methods: {
     callProducts() {
       let uri = GENERAL_CONSTANTS.PRODUCT + "/" + GENERAL_CONSTANTS.GET_ALL;
@@ -138,5 +139,11 @@ table.dataTable thead .sorting_asc:after {
 
 table.dataTable thead .sorting_desc:after {
   content: "\f0de";
+}
+.max-character-length{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 </style>
