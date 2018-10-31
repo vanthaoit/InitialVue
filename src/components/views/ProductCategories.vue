@@ -68,7 +68,6 @@
 <script>
 import $ from "jquery";
 import { HttpGet } from "../../api/index.js";
-import { API } from "../../config/api.constants";
 import {
   HTTPS_CONSTANTS,
   GENERAL_CONSTANTS
@@ -92,7 +91,7 @@ export default {
     callProductCategories() {
       let uri =
         GENERAL_CONSTANTS.PRODUCT_CATEGORY + "/" + GENERAL_CONSTANTS.GET_ALL;
-      debugger;
+      
       HttpGet(uri)
         .then(response => {
           if (response.status !== 200) {

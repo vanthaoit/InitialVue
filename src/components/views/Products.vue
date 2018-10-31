@@ -74,7 +74,6 @@
 <script>
 import $ from "jquery";
 import { HttpGet } from "../../api/index.js";
-import { API } from "../../config/api.constants";
 import {
   HTTPS_CONSTANTS,
   GENERAL_CONSTANTS
